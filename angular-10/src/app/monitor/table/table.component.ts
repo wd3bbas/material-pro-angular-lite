@@ -1,10 +1,9 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from 'ng-chartist';
-declare var require: any;
 
-const data= require('./data.json');
+// declare var require: any;
+
+// const data= require('./data.json');
 
 export interface PeriodicElement {
 	serviceName: string;
@@ -30,68 +29,25 @@ export interface PeriodicElement {
 	// {serviceName: '9', status: 'Fluorine', start: '18.9984', stop: 'F' ,restart:'mango'},
   ];
 
-export interface Chart {
-	type: ChartType;
-	data: Chartist.IChartistData;
-	options?: any;
-	responsiveOptions?: any;
-	events?: ChartEvent;
-}
+
+
 
 @Component({
-	selector: 'app-dashboard',
-	templateUrl: './dashboard.component.html',
-	styleUrls: ['./dashboard.component.scss']
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.css']
 })
-export class DashboardComponent implements AfterViewInit {
-	
+
+export class TableComponent implements OnInit {
+
+  constructor() { }
+
 	ngAfterViewInit() {}
 
-	displayedColumns: string[] = ['serviceName', 'status','log', 'start', 'stop', 'restart'];
+  displayedColumns: string[] = ['serviceName', 'status','log', 'start', 'stop', 'restart'];
 	dataSource = ELEMENT_DATA
 
-	// Barchart
-	barChart1: Chart = {
-		type: 'Bar',
-		data: data['Bar'],
-		options: {
-			seriesBarDistance: 15,
-			high: 12,
+  ngOnInit(): void {
+  }
 
-			axisX: {
-				showGrid: false,
-				offset: 20
-			},
-			axisY: {
-				showGrid: true,
-				offset: 40
-			},
-			height: 360
-		},
-
-		responsiveOptions: [
-			[ 
-				'screen and (min-width: 640px)',
-				{
-					axisX: {
-						labelInterpolationFnc: function(value: number,index: number): string {
-							return index % 1 === 0 ? `${value}` : '';
-						}
-					}
-				}
-			]
-		]
-	};
-
-	// This is for the donute chart
-	donuteChart1: Chart = {
-		type: 'Pie',
-		data: data['Pie'],
-		options: {
-			donut: true,
-			height: 260,
-			showLabel: false,
-			donutWidth: 20
-		}
-	};
 }

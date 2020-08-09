@@ -1,14 +1,14 @@
 <!-- ============================================================== -->
 <!-- sidebar -->
 <!-- ============================================================== -->
- <div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
+ <!-- <div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;"> -->
     <!-- User profile image -->
-    <div class="profile-img"> <img src="assets/images/users/profile.png" alt="user"> </div>
+    <!-- <div class="profile-img"> <img src="assets/images/users/profile.png" alt="user"> </div> -->
     <!-- User profile text-->
     <!-- ============================================================== -->
     <!-- Profile - style you can find in header.scss -->
     <!-- ============================================================== -->
-    <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> Markarn Doe <i class="ti-angle-down font-12 m-l-5"></i></a></div>
+    <!-- <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> Markarn Doe <i class="ti-angle-down font-12 m-l-5"></i></a></div>
     <mat-menu #sdprofile="matMenu" class="mymegamenu">
         <button mat-menu-item>
             <mat-icon>settings</mat-icon> Settings </button>
@@ -18,10 +18,19 @@
             <mat-icon>notifications_off</mat-icon> Disable notifications </button>
         <button mat-menu-item>
             <mat-icon>exit_to_app</mat-icon> Sign Out </button>
-    </mat-menu>
+    </mat-menu> -->
     
-</div>
+<!-- </div> -->
 <mat-nav-list appAccordion>
+    <mat-form-field appearance="fill">
+        <mat-label>Project</mat-label>
+        <mat-select >
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let project of projects" [value]="project.name">
+            {{project.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected" group="{{menuitem.state}}">
         <a class="" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
             <mat-icon>{{ menuitem.icon }}</mat-icon> 
